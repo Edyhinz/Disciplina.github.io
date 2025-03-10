@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Servidor Disciplina RP de MTA:SA - Un lugar donde la disciplina y el rol se encuentran.">
+    <title>Disciplina RP - </title>
+    <!-- Fuentes de Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Estilos CSS -->
+    <style>
+        /* Reset global */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background-color: #000;
+            overflow-x: hidden;
+            position: relative;
+            padding-bottom: 100px; /* Para evitar que el footer tape contenido */
+        }
+
+        /* Estilo para el fondo con estrellas en movimiento */
+        .starry-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            background: transparent;
+            animation: moveStars 120s linear infinite;
+        }
+
+        .star {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.8); /* Color blanco */
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            animation: twinkle 1s infinite alternate;
+        }
+
+        /* Movimiento de las estrellas */
+        @keyframes moveStars {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100%); }
+        }
+
+        /* Parpadeo de las estrellas */
+        @keyframes twinkle {
+            0% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+
+        /* HEADER */
+        header {
+            position: relative;
+            background: transparent; /* Ahora es transparente para ver las estrellas */
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        header h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.5em;
+            color: #00b3ff; /* Azul brillante */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.5);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 24px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 30px;
+            transition: background 0.3s;
+            font-size: 1.1em;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        nav a:hover {
+            background-color: #00b3ff;
+            box-shadow: 0px 0px 10px rgba(0, 179, 255, 0.7);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background-image: url('https://www.example.com/your-space-background.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 150px 20px;
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h2 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            color: #00b3ff;
+            text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.7);
+        }
+
+        /* CTA (Call to Action) Button */
+        .cta-btn {
+            padding: 18px 30px;
+            background-color: #00b3ff;
+            color: #fff;
+            font-size: 1.4em;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: background 0.3s;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+            margin-top: 40px; /* Se bajó el botón */
+        }
+
+        .cta-btn:hover {
+            background-color: #007acc;
+            box-shadow: 0 0 15px rgba(0, 179, 255, 0.7);
+        }
+
+        /* Información */
+        .info-section {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 50px 20px;
+            position: relative;
+        }
+
+        .info-card {
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            padding: 30px;
+            width: 30%;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 179, 255, 0.3);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .info-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 179, 255, 0.7);
+        }
+
+        .info-card h3 {
+            font-size: 2em;
+            margin-bottom: 15px;
+            color: #00b3ff;
+        }
+
+        .info-card p {
+            font-size: 1.2em;
+            color: #bbb;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #111;
+            text-align: center;
+            padding: 20px;
+            color: #bbb;
+            position: relative;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        footer a {
+            color: #00b3ff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* NUEVA SECCIÓN DE CONCEPTOS DE ROLEPLAY */
+        #roleplay-concepts {
+            background-color: #1a1a1a;
+            padding: 50px 20px;
+            margin-top: 50px;
+        }
+
+        #roleplay-concepts h2 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #00b3ff;
+            margin-bottom: 30px;
+        }
+
+        .concept-card {
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 20px rgba(0, 179, 255, 0.3);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .concept-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 179, 255, 0.7);
+        }
+
+        .concept-card h3 {
+            font-size: 2em;
+            color: #00b3ff;
+            margin-bottom: 10px;
+        }
+
+        .concept-card p {
+            font-size: 1.1em;
+            color: #bbb;
+        }
+
+        /* Estrellas debajo de los botones */
+        .star-container {
+            position: relative;
+            margin-top: 40px;
+        }
+
+        .star-container .starry-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- FONDO ESTRELLADO -->
+    <div class="starry-background">
+        <!-- JavaScript generará estrellas aquí -->
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <h1>Disciplina RP</h1>
+        <nav>
+            <a href="#home">Inicio</a>
+            <a href="#roleplay-concepts">Conceptos</a>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h2>Bienvenido a Disciplina RP</h2>
+        <a href="https://discord.gg/zD8EZf7yqe" class="cta-btn" target="_blank">¡Únete a nuestro Discord!</a>
+    </section>
+
+    <!-- CONCEPTOS DE ROLEPLAY -->
+    <section id="roleplay-concepts">
+        <h2>Conceptos de Roleplay</h2>
+        <div class="concept-card">
+            <h3>IC (In Character)</h3>
+            <p>Es el medio de información accesible que tiene tu PERSONAJE.</p>
+        </div>
+        <div class="concept-card">
+            <h3>OOC (Out of Character)</h3>
+            <p>Es el medio de información accesible del JUGADOR.</p>
+        </div>
+        <div class="concept-card">
+            <h3>IOOC (Insulter OutOf Character)</h3>
+            <p>Es insultar a otra persona en el canal OOC, puedes ser jaileado por esto.</p>
+        </div>
+        <div class="concept-card">
+            <h3>ER (Evadir Rol)</h3>
+            <p>Es desconectarse, forzar crash o usar el /morir para evadir un rol que te estén haciendo.</p>
+        </div>
+        <div class="concept-card">
+            <h3>EK (Evadir Kill)</h3>
+            <p>Es desconectarse o usar un comando para evadir que tu personaje termine abatido.</p>
+        </div>
+        <div class="concept-card">
+            <h3>DM (Death Match)</h3>
+            <p>Es pegar/asesinar sin razón a alguien, ya sea con un arma o con los puños.</p>
+        </div>
+        <div class="concept-card">
+            <h3>NVVPJ (No Valorar La Vida de tu Personaje)</h3>
+            <p>Hacer cualquier cosa arriesgando la vida de tu personaje.</p>
+        </div>
+        <div class="concept-card">
+            <h3>PG (Power Gaming)</h3>
+            <p>Realizar acciones que serían imposibles en la vida real, o que nunca harías.</p>
+        </div>
+        <div class="concept-card">
+            <h3>PG2</h3>
+            <p>Forzar rol a beneficio tuyo, por ejemplo: Mentirle a un usuario lo que llevas encima para salvarte.</p>
+        </div>
+        <div class="concept-card">
+            <h3>MG (Meta Gaming)</h3>
+            <p>Usar información OOC para beneficio IC o viceversa.</p>
+        </div>
+        <div class="concept-card">
+            <h3>CC (Confundir Canales)</h3>
+            <p>Confundir los canales IC con OOC.</p>
+        </div>
+        <div class="concept-card">
+            <h3>CJ (Car Jacked)</h3>
+            <p>Es el robo a vehículos sin rol.</p>
+        </div>
+        <div class="concept-card">
+            <h3>RK (Revenge Kill)</h3>
+            <p>Es ir a asesinar a alguien que te mató previamente en un rol.</p>
+        </div>
+        <div class="concept-card">
+            <h3>CK (Car Kill)</h3>
+            <p>Matar a un usuario atropellándolo con un vehículo.</p>
+        </div>
+        <div class="concept-card">
+            <h3>TK (Team Kill)</h3>
+            <p>Es asesinar a miembros de tu propia facción.</p>
+        </div>
+        <div class="concept-card">
+            <h3>BD (Bad Driving)</h3>
+            <p>Manejar de forma imprudente o fuera de las normas.</p>
+        </div>
+        <div class="concept-card">
+            <h3>ZZ (Zig Zag)</h3>
+            <p>Realizar movimientos irregulares para evitar las balas.</p>
+        </div>
+        <div class="concept-card">
+            <h3>HQ (Head Quarters)</h3>
+            <p>Es la base de una facción.</p>
+        </div>
+        <div class="concept-card">
+            <h3>IHQ (Invasion Head Quarters)</h3>
+            <p>Invadir una facción enemiga con menos de 4/5 usuarios.</p>
+        </div>
+        <div class="concept-card">
+            <h3>SK (Spawn Kill)</h3>
+            <p>Es asesinar a un usuario al entrar o salir de un lugar.</p>
+        </div>
+        <div class="concept-card">
+            <h3>HK (Helicopter Kill)</h3>
+            <p>Es matar a alguien usando las hélices del helicóptero.</p>
+        </div>
+        <div class="concept-card">
+            <h3>BA (Bug Abuser)</h3>
+            <p>Abusar de un bug para beneficio propio.</p>
+        </div>
+        <div class="concept-card">
+            <h3>NA (Noob Abuser)</h3>
+            <p>Abusar de jugadores nuevos que están protegidos por un tiempo.</p>
+        </div>
+        <div class="concept-card">
+            <h3>AA (Admin Abuser)</h3>
+            <p>Abusar de un rango superior para beneficios propios.</p>
+        </div>
+        <div class="concept-card">
+            <h3>BJ/BH (Bunny Hop/Bunny Jump)</h3>
+            <p>Saltar repetidamente para llegar más rápido.</p>
+        </div>
+        <div class="concept-card">
+            <h3>DB (Drive-By)</h3>
+            <p>Disparar desde el asiento del conductor de un vehículo.</p>
+        </div>
+        <div class="concept-card">
+            <h3>BPC (Bad Parking Car)</h3>
+            <p>Estacionar de forma antiroleplay.</p>
+        </div>
+        <div class="concept-card">
+            <h3>AIOOC (Admin Insult Out Of Character)</h3>
+            <p>Insultar a un admin por el canal OOC.</p>
+        </div>
+        <div class="concept-card">
+            <h3>LA (Lag Abuser)</h3>
+            <p>Abusar del lag del servidor o de un jugador.</p>
+        </div>
+        <div class="concept-card">
+            <h3>LA2 (FA - Faction Abuser)</h3>
+            <p>Abusar de tu rango siendo líder de facción.</p>
+        </div>
+        <div class="concept-card">
+            <h3>MK (Meta Kill)</h3>
+            <p>Asesinar a alguien por motivos OOC.</p>
+        </div>
+        <div class="concept-card">
+            <h3>MA (Mal Anuncio IC)</h3>
+            <p>Realizar un anuncio mal en IC.</p>
+        </div>
+        <div class="concept-card">
+            <h3>MUD (Mal Uso del Canal /DUDA)</h3>
+            <p>Realizar preguntas fuera de rol.</p>
+        </div>
+        <div class="concept-card">
+            <h3>MUR (Mal Uso del /reportar)</h3>
+            <p>Pedir cosas que puedes obtener IC fácilmente.</p>
+        </div>
+        <div class="concept-card">
+            <h3>SPAM</h3>
+            <p>Promocionar otro servidor o enviar mensajes repetitivos.</p>
+        </div>
+        <div class="concept-card">
+            <h3>FLOOD</h3>
+            <p>Repetir el mismo mensaje varias veces.</p>
+        </div>
+        <div class="concept-card">
+            <h3>AFK (Away from Keyboard)</h3>
+            <p>Estar fuera del teclado.</p>
+        </div>
+        <div class="concept-card">
+            <h3>AVP (Afk en Vía Pública)</h3>
+            <p>Estar AFK en un lugar público.</p>
+        </div>
+        <div class="concept-card">
+            <h3>NRA (No Rolear Arma)</h3>
+            <p>No rolear el uso de un arma (recargar, sacar, guardar, etc).</p>
+        </div>
+        <div class="concept-card">
+            <h3>NRE (No Rolear Entorno)</h3>
+            <p>No rolear el entorno donde estás.</p>
+        </div>
+        <div class="concept-card">
+            <h3>NRH (No Rolear Heridas)</h3>
+            <p>No rolear las heridas después de ser atacado.</p>
+        </div>
+        <div class="concept-card">
+            <h3>NRC (No Rolear Choque)</h3>
+            <p>No hacer rol después de chocar un vehículo.</p>
+        </div>
+        <div class="concept-card">
+            <h3>NIP (Nula Interpretación del Personaje)</h3>
+            <p>No interpretar correctamente el rol.</p>
+        </div>
+        <div class="concept-card">
+            <h3>PK (Player Kill)</h3>
+            <p>Aplicar un PK significa que el personaje muere involuntariamente.</p>
+        </div>
+        <div class="concept-card">
+            <h3>CK (Character Kill)</h3>
+            <p>Es la muerte definitiva del personaje con el consiguiente ban.</p>
+        </div>
+
+        <!-- Estrellas debajo de los botones -->
+        <div class="star-container">
+            <div class="starry-background">
+                <!-- Estrellas generadas dinámicamente -->
+            </div>
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 Disciplina RP. Todos los derechos reservados. | <a href="https://discord.gg/zD8EZf7yqe" target="_blank">Únete a nuestro Discord</a></p>
+    </footer>
+
+    <script>
+        // JavaScript para generar estrellas en el fondo
+        function createStars() {
+            const starBackground = document.querySelector('.starry-background');
+            const numStars = 200; // Número de estrellas a generar
+
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.style.left = Math.random() * 100 + '%';  // Posición horizontal
+                star.style.animationDuration = Math.random() * 3 + 1 + 's';  // Duración del parpadeo
+                star.style.animationDelay = Math.random() * 5 + 's';  // Retraso de parpadeo
+                starBackground.appendChild(star);
+            }
+        }
+
+        createStars();
+    </script>
+
+</body>
+</html>
+
